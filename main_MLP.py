@@ -23,13 +23,10 @@ def main():
     values_train, values_test, class_train, class_test = train_test_split(data_set.values[:,:4], \
                                                                 data_set["class"], test_size=0.3)
 
-    ans_mlp = mlp_classifier(values_train, values_test, class_train, class_test)
+    ans_mlp = mlp_classifier(values_train, values_test, class_train)
 
     print("acurácia: ", accuracy_score(ans_mlp, class_test))
-
     print(classification_report(ans_mlp, class_test))
-
-    return None
 
 
 if __name__ == "__main__":
