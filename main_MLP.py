@@ -1,5 +1,5 @@
-# from supervised_learning.ct_processing.ct_cluster import
-# from supervised_learning.ct_processing.ct_io import
+from supervised_learning.ct_processing.ct_learn import mlp_classifier
+from sklearn.metrics import accuracy_score, classification_report
 
 import argparse
 import pandas as pd
@@ -19,13 +19,17 @@ def main():
     array_data_set_scale = min_max_scaler.fit_transform(data_set.values[:,:4])# 0 to 1
     data_set.loc[:,:4] = array_data_set_scale
 
-    data_set.loc[data_set['class'] == 'Iris-setosa', ['class']] = 2
-    data_set.loc[data_set['class'] == 'Iris-versicolor', ['class']] = 0
-    data_set.loc[data_set['class'] == 'Iris-virginica', ['class']] = 1
-
     #train and test
     values_train, values_test, class_train, class_test = train_test_split(data_set.values[:,:4], \
                                                                 data_set["class"], test_size=0.3)
+
+    ans_mlp = mlp_classifier(values_train, values_test, class_train, class_test)
+
+    print("acurácia: ", accuracy_score(ans_mlp, class_test))
+
+    print(classification_report(ans_mlp, class_test))
+
+    return None
 
 
 if __name__ == "__main__":
