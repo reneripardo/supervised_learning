@@ -12,7 +12,6 @@ Informações:
  Aplicação com a Gaussian Naive Bayes
  
  Informações: 
-    
     Balance Scale data set;
     30% dos dados para teste e o restante para treinamento;
     Ambiente PyCharm;
